@@ -70,9 +70,12 @@ class DefaultTextFormField extends StatelessWidget {
               hintText: hint,
               hintStyle: Theme.of(context).textTheme.titleMedium,
               labelStyle: Theme.of(context).textTheme.titleMedium,
-              border: OutlineInputBorder(
-                  borderSide: const BorderSide(),
-                  borderRadius: BorderRadius.circular(15)),
+              border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/utils/style_manager.dart';
+import 'package:food_app/utils/values_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:payment_application/utils/style_manager.dart';
-import 'package:payment_application/utils/values_manager.dart';
-
 import 'colors_manager.dart';
 
 ThemeData getLightApplicationTheme() {

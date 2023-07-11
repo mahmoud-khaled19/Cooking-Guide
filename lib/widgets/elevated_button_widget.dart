@@ -20,11 +20,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: color ?? Theme.of(context).splashColor,
-      ),
-
+      color: color ?? Theme.of(context).splashColor,
       width: width ?? AppSize.s70,
       child: TextButton(
         onPressed: function,

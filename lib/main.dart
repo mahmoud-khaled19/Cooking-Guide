@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:payment_application/utils/strings_manager.dart';
-import 'package:payment_application/utils/theme_manager.dart';
-import 'package:payment_application/view/splash_screen.dart';
-import 'package:payment_application/view_model/boxes.dart';
-import 'package:payment_application/view_model/person.dart';
+import 'package:food_app/utils/strings_manager.dart';
+import 'package:food_app/utils/theme_manager.dart';
+import 'package:food_app/view/random_meal_screen.dart';
+import 'package:food_app/view/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(PersonAdapter());
-  personBox = await Hive.openBox<Person>('personBox');
   runApp(const MyApp());
 }
 
@@ -26,7 +21,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: AppStrings.appTitle,
-          theme: getDarkApplicationTheme(),
+          theme: getLightApplicationTheme(),
           home: const SplashScreen(),
         );
       },

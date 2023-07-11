@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/default_custom_text.dart';
 
 class GlobalMethods {
