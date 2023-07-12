@@ -4,7 +4,7 @@ class ColorsManager {
   static Color lightScaffoldColor = const Color(0xFFF5F5F5);
   static Color lightCardColor = const Color(0xFFFfFFFf); //F0FFFF
   static Color lightBackgroundColor = const Color(0xFFD0E8F2);
-  static Color lightIconsColor = const Color(0xFF79A3B1);
+  static Color lightIconsColor = const Color(0xFF196f3d);
   static Color grey =  Colors.grey.shade600;
   static Color black =  Colors.black;
 

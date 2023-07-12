@@ -25,6 +25,7 @@ class DefaultCustomText extends StatelessWidget {
         text,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontSize: fontSize,
+
               color: color,
               fontWeight: fontWeight,
             ),

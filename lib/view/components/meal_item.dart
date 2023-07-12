@@ -130,7 +130,7 @@ class MealItem extends StatelessWidget {
                 child: DefaultCustomText(
                   text: mealName ?? ' try name',
                   color: Theme.of(context).splashColor,
-                  fontSize: AppSize.s18,
+                  fontSize: AppSize.s16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -147,7 +147,7 @@ class MealItem extends StatelessWidget {
           DefaultCustomText(
             text: 'Description',
             fontWeight: FontWeight.bold,
-            fontSize: AppSize.s18,
+            fontSize: AppSize.s16,
           ),
           SizedBox(
             height: AppSize.s4,
@@ -162,7 +162,7 @@ class MealItem extends StatelessWidget {
           DefaultCustomText(
             text: 'Components',
             fontWeight: FontWeight.bold,
-            fontSize: AppSize.s18,
+            fontSize: AppSize.s16,
           ),
           SizedBox(
             height: AppSize.s10,

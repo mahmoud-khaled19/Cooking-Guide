@@ -13,7 +13,7 @@ ThemeData getLightApplicationTheme() {
       ))),
       appBarTheme: AppBarTheme(
         centerTitle: true,
-          titleTextStyle: GoogleFonts.akshar(
+          titleTextStyle: GoogleFonts.alegreya(
               color: Colors.black, fontSize: AppSize.s16, letterSpacing: 0.6),
           backgroundColor: ColorsManager.lightScaffoldColor,
           elevation: 0,
@@ -53,7 +53,7 @@ ThemeData getDarkApplicationTheme() {
           centerTitle: true,
           backgroundColor: ColorsManager.darkScaffoldColor,
           elevation: 0,
-          titleTextStyle: GoogleFonts.akshar(
+          titleTextStyle: GoogleFonts.alegreya(
               color: Colors.white, fontSize: AppSize.s16, letterSpacing: 0.6)),
       drawerTheme:
           DrawerThemeData(backgroundColor: ColorsManager.darkScaffoldColor),

@@ -3,4 +3,6 @@
 /// 4c2571511d254818b723b704e1a70756
 class ApiConstance {
   static const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  static const categoryMealUrl = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  static const areaMealUrl = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 }
