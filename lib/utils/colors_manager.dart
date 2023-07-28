@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ColorsManager {
-  static Color lightScaffoldColor = const Color(0xFFF5F5F5);
-  static Color lightCardColor = const Color(0xFFFfFFFf); //F0FFFF
+  static Color lightScaffoldColor = HexColor('7D3C98');
+  static Color lightCardColor = const Color(0xFFFfFFFf);
   static Color lightBackgroundColor = const Color(0xFFD0E8F2);
-  static Color lightIconsColor = const Color(0xFF196f3d);
-  static Color grey =  Colors.grey.shade600;
-  static Color black =  Colors.black;
+  static Color lightIconsColor = HexColor('7D3C98');
+  static Color grey = Colors.grey.shade600;
+  static Color black = Colors.black;
 
   //  Color lightTextColor = const Color(0xff324558);
   //Dark theme

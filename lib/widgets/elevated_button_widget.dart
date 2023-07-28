@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/widgets/default_custom_text.dart';
 
 import '../utils/values_manager.dart';
 
@@ -20,13 +21,18 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color ?? Theme.of(context).splashColor,
-      width: width ?? AppSize.s70,
+      width: width ?? AppSize.s250,
+      height: AppSize.s40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: color ?? Theme.of(context).splashColor,
+      ),
       child: TextButton(
         onPressed: function,
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.titleMedium,
+        child: DefaultCustomText(
+          color: Colors.white,
+          alignment: Alignment.center,
+          text: text,
         ),
       ),
     );

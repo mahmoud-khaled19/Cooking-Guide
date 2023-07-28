@@ -19,18 +19,20 @@ class DefaultCustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: alignment ?? Alignment.centerLeft,
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontSize: fontSize,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Align(
+        alignment: alignment ?? Alignment.centerLeft,
+        child: Text(text,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontSize: fontSize,
 
-              color: color,
-              fontWeight: fontWeight,
-            ),
-        maxLines: maxLines,
-        overflow: TextOverflow.ellipsis,
+                color: color,
+                fontWeight: fontWeight,
+              ),
+          maxLines: maxLines,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }

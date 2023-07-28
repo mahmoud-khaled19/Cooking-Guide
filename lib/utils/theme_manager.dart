@@ -14,14 +14,12 @@ ThemeData getLightApplicationTheme() {
       appBarTheme: AppBarTheme(
         centerTitle: true,
           titleTextStyle: GoogleFonts.alegreya(
-              color: Colors.black, fontSize: AppSize.s16, letterSpacing: 0.6),
+              color: Colors.white, fontSize: AppSize.s16, letterSpacing: 0.6),
           backgroundColor: ColorsManager.lightScaffoldColor,
           elevation: 0,
           iconTheme: IconThemeData(color: ColorsManager.black,size: AppSize.s18)),
       drawerTheme:
           DrawerThemeData(backgroundColor: ColorsManager.lightScaffoldColor),
-      colorScheme:
-          ColorScheme.light(background: ColorsManager.lightBackgroundColor),
       iconTheme: IconThemeData(
           color: ColorsManager.lightIconsColor, size: AppSize.s24),
       scaffoldBackgroundColor: ColorsManager.lightScaffoldColor,
@@ -30,6 +28,7 @@ ThemeData getLightApplicationTheme() {
       primaryColor: ColorsManager.lightCardColor,
       disabledColor: ColorsManager.grey,
       cardColor: ColorsManager.lightCardColor,
+
       textTheme: TextTheme(
           titleLarge: getSemiBoldStyle(
               fontSize: AppSize.s16, color: ColorsManager.black),

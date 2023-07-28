@@ -1,7 +1,7 @@
-class RandomMealModel {
+class DetailsMealModel {
   List<Meals>? meals;
 
-  RandomMealModel.fromJson(Map<String, dynamic> json) {
+  DetailsMealModel.fromJson(Map<String, dynamic> json) {
     if (json['meals'] != null) {
       meals = <Meals>[];
       json['meals'].forEach((v) {

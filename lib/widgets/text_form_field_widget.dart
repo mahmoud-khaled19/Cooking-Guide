@@ -4,9 +4,7 @@ class DefaultTextFormField extends StatelessWidget {
   final TextEditingController controller;
 
   final String? Function(String? val)? validate;
-  final String? label;
   final bool? enabled;
-  final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Function()? suffixFunction;
   final Function()? function;
@@ -28,8 +26,6 @@ class DefaultTextFormField extends StatelessWidget {
     this.maxLines = 1,
     required this.controller,
     required this.validate,
-    this.label,
-    this.prefixIcon,
     this.function,
     this.suffixIcon,
     this.suffixFunction,
@@ -54,7 +50,7 @@ class DefaultTextFormField extends StatelessWidget {
             maxLines: maxLines,
             onEditingComplete: onSubmittedFunction,
             textInputAction: textTypeAction,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleSmall,
             obscureText: isSecure,
             keyboardType: textType,
             controller: controller,
@@ -64,17 +60,17 @@ class DefaultTextFormField extends StatelessWidget {
                   onTap: suffixFunction,
                   child: Icon(
                     suffixIcon,
-                    color: Theme.of(context).splashColor,
                   )),
-              labelText: label,
               hintText: hint,
-              hintStyle: Theme.of(context).textTheme.titleMedium,
-              labelStyle: Theme.of(context).textTheme.titleMedium,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
+              hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Colors.grey
               ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none,
+              border:  OutlineInputBorder(
+                borderSide:  BorderSide(
+                  color: Theme.of(context).splashColor
+                ),
+
+                borderRadius: BorderRadius.circular(10)
               ),
             ),
           ),

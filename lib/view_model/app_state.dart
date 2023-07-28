@@ -2,6 +2,8 @@ abstract class AppState {}
 
 class AppInitial extends AppState {}
 
+class ChangeVisibilityState extends AppState {}
+
 class RandomMealLoadingState extends AppState {}
 
 class BottomNavigationBarScreensChange extends AppState {}
@@ -27,3 +29,5 @@ class AreaMealLoadingState extends AppState {}
 class AreaMealSuccessState extends AppState {}
 
 class AreaMealErrorState extends AppState {}
+
+

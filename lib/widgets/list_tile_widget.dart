@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/widgets/default_custom_text.dart';
 class ListTileWidget extends StatelessWidget {
   const ListTileWidget(
       {Key? key,
@@ -12,16 +13,22 @@ class ListTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        text,
-        style: Theme.of(context).textTheme.titleMedium,
-      ),
-      leading: Icon(
-        icon,
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).splashColor,
       ),
-      onTap: function,
+      child: ListTile(
+        title: DefaultCustomText(
+          text: text,
+        ),
+        leading: Icon(
+          icon,
+          color: Theme.of(context).splashColor,
+        ),
+        onTap: function,
+      ),
     );
   }
 }

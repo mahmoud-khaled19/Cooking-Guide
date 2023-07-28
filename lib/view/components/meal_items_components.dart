@@ -13,17 +13,6 @@ class MealItemComponents extends StatelessWidget {
     return Container(
       padding:const EdgeInsets.symmetric(vertical: 10),
       margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Theme.of(context).cardColor,
-            Theme.of(context).splashColor,
-            Theme.of(context).scaffoldBackgroundColor,
-          ],
-        ),
-      ),
       child: Row(
         children: [
           DefaultCustomText(

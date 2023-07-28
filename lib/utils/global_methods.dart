@@ -18,7 +18,13 @@ class GlobalMethods {
       content: DefaultCustomText(text: text,),
     ));
   }
-
+  static validate(text,String? value){
+    if (value!.isEmpty) {
+      return text;
+    } else {
+      return null;
+    }
+  }
   static showAlertDialog({
     required BuildContext context,
     Widget? title,
@@ -29,7 +35,7 @@ class GlobalMethods {
         context: context,
         builder: (context) {
           return AlertDialog(
-            backgroundColor: Theme.of(context).primaryColorDark,
+            backgroundColor: Theme.of(context).cardColor,
             title: title,
             content: content,
             actions: actions,

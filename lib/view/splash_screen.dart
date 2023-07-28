@@ -1,11 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/utils/assets_manager.dart';
-import 'package:food_app/view/home_screen.dart';
-import 'package:lottie/lottie.dart';
 import '../utils/values_manager.dart';
 import '../widgets/default_custom_text.dart';
-import 'random_meal_screen.dart';
+import 'auth_screens/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,9 +17,10 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.network(
+            const Image(
+                image: AssetImage(
               ImagesManager.splashScreen,
-            ),
+            )),
             SizedBox(
               height: AppSize.s20,
             ),
@@ -34,7 +33,7 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen: const HomeScreen(),
+      nextScreen:  LoginScreen(),
       splashTransition: SplashTransition.slideTransition,
       backgroundColor: Theme.of(context).cardColor,
     );
