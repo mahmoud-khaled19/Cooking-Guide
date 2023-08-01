@@ -13,7 +13,6 @@ class MealDetailsScreen extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = BlocProvider.of(context);
         return Scaffold(
-            appBar: AppBar(),
             body: ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {

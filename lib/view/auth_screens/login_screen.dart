@@ -135,13 +135,18 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(
                                 height: AppSize.s8,
                               ),
-                              CircleAvatar(
-                                radius: 30,
-                                child: Image(
-                                  fit: BoxFit.fill,
-                                  height: hSize * 0.05,
-                                  image: AssetImage(
-                                    Assets.imagesGmail,
+                              GestureDetector(
+                                onTap: (){
+                                  cubit.signInWithGoogle(context);
+                                },
+                                child: CircleAvatar(
+                                  radius: 30,
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    height: hSize * 0.05,
+                                    image: AssetImage(
+                                      Assets.imagesGmail,
+                                    ),
                                   ),
                                 ),
                               )

@@ -26,23 +26,13 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeightManager.regular,
                 color: Colors.grey[600],
               ),
-              Row(
-                children: [
-                  DefaultCustomText(
-                    text: 'What Would you Like ',
-                    fontSize: AppSize.s20,
-                  ),
-                  const Spacer(),
-                  const CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.red,
-                    child: Icon(Icons.person),
-                  )
-                ],
+              DefaultCustomText(
+                text: 'What Would you Like ',
+                fontSize: AppSize.s16,
               ),
               DefaultCustomText(
                 text: 'to cook today?',
-                fontSize: AppSize.s20,
+                fontSize: AppSize.s16,
               ),
               SizedBox(
                 height: AppSize.s20,
@@ -127,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                           return data != null
                               ? CategoryList(
                                   function: () {
-                                    cubit.getMealsCategoryFilter(data, context);
+                                    cubit.getMealsAreaFilter(data, context);
                                   },
                                   text: data,
                                   length: cubit.areaModel!.meals!.length,

@@ -17,10 +17,14 @@ class MealItemComponents extends StatelessWidget {
         children: [
           DefaultCustomText(
             text: item1,
+            color: Colors.white60,
+
           ),
           const Spacer(),
           DefaultCustomText(
             text: quantity1,
+            color: Colors.white60,
+
           ),
         ],
       ),

@@ -22,6 +22,8 @@ class FilterMealLoadingState extends AppState {}
 
 class FilterMealSuccessState extends AppState {}
 
+class DeleteFavouriteItem extends AppState {}
+
 class FilterMealErrorState extends AppState {}
 
 class AreaMealLoadingState extends AppState {}
@@ -29,5 +31,3 @@ class AreaMealLoadingState extends AppState {}
 class AreaMealSuccessState extends AppState {}
 
 class AreaMealErrorState extends AppState {}
-
-

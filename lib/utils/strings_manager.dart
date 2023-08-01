@@ -9,6 +9,7 @@ class AppStrings {
   static const String personalInfo = 'personal Info';
   static const String login = 'Sign in';
   static const String register = 'Sign up';
+  static const String loading = 'Loading ....';
 
   static const String labelPassword = 'Password';
   static const String labelEmail = 'example@gmail.com';

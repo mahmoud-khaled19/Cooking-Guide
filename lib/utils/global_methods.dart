@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../widgets/default_custom_text.dart';
 
 class GlobalMethods {
@@ -10,7 +11,12 @@ class GlobalMethods {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => widget));
   }
-
+ static showVideo(String? videoUrl ) async {
+   final Uri url = Uri.parse(videoUrl!);
+   if (!await launchUrl(url)) {
+   throw Exception('Could not launch $url');
+   }
+ }
   static showSnackBar(BuildContext context, String text, Color color) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: const Duration(seconds: 3),

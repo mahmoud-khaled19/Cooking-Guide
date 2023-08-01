@@ -1,16 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/utils/global_methods.dart';
-import 'package:food_app/utils/values_manager.dart';
+import 'package:food_app/view/components/item.dart';
 import 'package:food_app/view/meal_details.dart';
 import 'package:food_app/view_model/app_cubit.dart';
-import 'package:food_app/widgets/default_custom_text.dart';
 import '../view_model/app_state.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key, required this.title}) : super(key: key);
+  const DetailsScreen({Key? key, required this.title,this.image}) : super(key: key);
   final String? title;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class DetailsScreen extends StatelessWidget {
                                   context, const MealDetailsScreen());
                             });
                           },
-                          child: detailsMealItem(
+                          child: FavouriteItem(
                             image: data.mealImage!,
                             name: data.mealName!,
                           ),
@@ -56,32 +55,8 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
         );
-      },
+      }
+
     );
   }
-}
-
-Widget detailsMealItem({
-  required String image,
-  required String name,
-}) {
-  return Column(
-    children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: CachedNetworkImage(imageUrl: image),
-      ),
-      SizedBox(
-        height: AppSize.s10,
-      ),
-      DefaultCustomText(
-        fontSize: AppSize.s12,
-        text: name,
-        alignment: Alignment.center,
-      ),
-      SizedBox(
-        height: AppSize.s10,
-      ),
-    ],
-  );
 }

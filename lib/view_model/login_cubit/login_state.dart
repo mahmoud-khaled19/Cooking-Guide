@@ -4,6 +4,14 @@ class LoginInitial extends LoginState {}
 
 class SignOutSuccessState extends LoginState {}
 
+class SignInWithGoogleLoadingState extends LoginState {}
+
+class SignInWithGoogleSuccessState extends LoginState {}
+
+class SignInWithGoogleErrorState extends LoginState {}
+
+class SignInWithGmailAndPasswordSuccessState extends LoginState {}
+
 class SignInWithEmailAndPasswordLoadingState extends LoginState {}
 
 class ChangeVisibilityState extends LoginState {}
