@@ -11,20 +11,20 @@ class MealItemComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:const EdgeInsets.symmetric(vertical: 10),
+      padding:const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
       margin: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white60
+      ),
       child: Row(
         children: [
           DefaultCustomText(
             text: item1,
-            color: Colors.white60,
-
           ),
           const Spacer(),
           DefaultCustomText(
             text: quantity1,
-            color: Colors.white60,
-
           ),
         ],
       ),

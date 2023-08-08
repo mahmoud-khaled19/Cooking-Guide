@@ -16,9 +16,9 @@ class RegisterScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController positionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: size * 0.1,
+                      height: size * 0.08,
                     ),
                     ClipPath(
                       clipper: ClipperPath(),
@@ -46,9 +46,10 @@ class RegisterScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: size * 0.06 ,
+                              height: size * 0.05,
                             ),
                             DefaultCustomText(
+                              color: Theme.of(context).splashColor,
                               alignment: Alignment.center,
                               text: AppStrings.register,
                               fontSize: AppSize.s20,
@@ -65,15 +66,6 @@ class RegisterScreen extends StatelessWidget {
                               hint: AppStrings.labelName,
                             ),
                             DefaultTextFormField(
-                              textType: TextInputType.phone,
-                              controller: phoneController,
-                              validate: (String? value) {
-                                return GlobalMethods.validate(
-                                    AppStrings.phoneValidateMessage, value);
-                              },
-                              hint: AppStrings.labelPhone,
-                            ),
-                            DefaultTextFormField(
                               controller: emailController,
                               validate: (String? value) {
                                 return GlobalMethods.validate(
@@ -82,12 +74,8 @@ class RegisterScreen extends StatelessWidget {
                               hint: AppStrings.labelEmail,
                             ),
                             DefaultTextFormField(
-                              textTypeAction: TextInputAction.done,
                               isSecure: cubit.isVisible,
                               controller: passwordController,
-                              suffixIcon: cubit.isVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
                               suffixFunction: () {
                                 cubit.changeVisibility();
                               },
@@ -97,8 +85,24 @@ class RegisterScreen extends StatelessWidget {
                               },
                               hint: AppStrings.labelPassword,
                             ),
+                            DefaultTextFormField(
+                              isSecure: cubit.isVisible,
+                              textTypeAction: TextInputAction.done,
+                              suffixIcon: cubit.isVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              suffixFunction: () {
+                                cubit.changeVisibility();
+                              },
+                              controller: confirmPasswordController,
+                              validate: (String? value) {
+                                return GlobalMethods.validate(
+                                    AppStrings.confirmedPasswordValidateMessage, value);
+                              },
+                              hint: AppStrings.labelPassword,
+                            ),
                             SizedBox(
-                              height: AppSize.s14,
+                              height: AppSize.s18,
                             ),
                             Visibility(
                               visible: state
@@ -110,14 +114,16 @@ class RegisterScreen extends StatelessWidget {
                               ),
                               child: DefaultButton(
                                 text: AppStrings.register,
-                                width: AppSize.s100,
                                 function: () {
-                                  if (formKey.currentState!.validate()) {
+                                  if (formKey.currentState!.validate() &&
+                                      cubit.confirmPassword(
+                                        passwordController.text,
+                                        confirmPasswordController.text,
+                                      )) {
                                     cubit
                                         .userRegisterWithEmailAndPassword(
                                       context,
                                       name: nameController.text.trim(),
-                                      phone: phoneController.text.trim(),
                                       password: passwordController.text.trim(),
                                       email: emailController.text.trim(),
                                     )
@@ -138,7 +144,6 @@ class RegisterScreen extends StatelessWidget {
                       children: [
                         DefaultCustomText(
                           text: AppStrings.alreadyHaveAccount,
-                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: AppSize.s10,
                         ),
@@ -149,9 +154,7 @@ class RegisterScreen extends StatelessWidget {
                           },
                           child: DefaultCustomText(
                             text: AppStrings.login,
-                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: AppSize.s12,
                           ),
                         ),
                       ],

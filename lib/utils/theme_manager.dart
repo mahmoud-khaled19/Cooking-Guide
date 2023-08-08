@@ -17,7 +17,7 @@ ThemeData getLightApplicationTheme() {
               color: Colors.white, fontSize: AppSize.s16, letterSpacing: 0.6),
           backgroundColor: ColorsManager.lightScaffoldColor,
           elevation: 0,
-          iconTheme: IconThemeData(color: ColorsManager.black,size: AppSize.s18)),
+          iconTheme: IconThemeData(color: Colors.white,size: AppSize.s18)),
       drawerTheme:
           DrawerThemeData(backgroundColor: ColorsManager.lightScaffoldColor),
       iconTheme: IconThemeData(

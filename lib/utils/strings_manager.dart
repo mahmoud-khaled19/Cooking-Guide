@@ -9,9 +9,10 @@ class AppStrings {
   static const String personalInfo = 'personal Info';
   static const String login = 'Sign in';
   static const String register = 'Sign up';
+  static const String resetPassword = 'Reset';
   static const String loading = 'Loading ....';
 
-  static const String labelPassword = 'Password';
+  static const String labelPassword = '******************';
   static const String labelEmail = 'example@gmail.com';
   static const String labelName = 'mahmoud khaled';
   static const String labelPhone = '+971********';
@@ -21,6 +22,7 @@ class AppStrings {
   static const String phoneValidateMessage = 'Write a valid phone Number';
   static const String positionValidateMessage = 'insert your Position';
   static const String passwordValidateMessage = 'Write a valid password';
+  static const String confirmedPasswordValidateMessage = 'The password is Not The same';
   static const String alreadyHaveAccount = 'already Have Account ?';
   static const String signInWithGoogle = "sign in with google";
   static const String signInWithEmail = "sign in with Email";

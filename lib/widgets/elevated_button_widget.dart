@@ -21,7 +21,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? AppSize.s250,
+      width: width ?? AppSize.s120,
       height: AppSize.s40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -30,7 +30,6 @@ class DefaultButton extends StatelessWidget {
       child: TextButton(
         onPressed: function,
         child: DefaultCustomText(
-          color: Colors.white,
           alignment: Alignment.center,
           text: text,
         ),

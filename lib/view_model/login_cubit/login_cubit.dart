@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/view/auth_screens/login_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../utils/global_methods.dart';
-import '../../view/layout_screen.dart';
+import '../../view/auth_screens/user_login_states_screen.dart';
+import '../../view/main_screens/layout_screen.dart';
 import '../../widgets/default_custom_text.dart';
 import 'login_state.dart';
 
@@ -19,6 +21,23 @@ class LoginCubit extends Cubit<LoginState> {
   void changeVisibility() {
     isVisible = !isVisible;
     emit(ChangeVisibilityState());
+  }
+
+  String? userName;
+
+  Future getUserData() async {
+    final userId = auth.currentUser?.uid;
+    try {
+      final DocumentSnapshot userDoc =
+          await authStore.collection('users').doc(userId).get();
+      if (userDoc.exists == true) {
+        userName = userDoc.get('name');
+        emit(GetUserDataSuccessState());
+      }
+      return;
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future userLoginWithEmail(
@@ -73,7 +92,7 @@ class LoginCubit extends Cubit<LoginState> {
       );
       final UserCredential userCredential =
           await auth.signInWithCredential(credential);
-
+      userName = userCredential.user!.displayName;
       // Successful sign-in
       emit(SignInWithGoogleSuccessState());
       GlobalMethods.navigateAndFinish(context, LayoutScreen());
@@ -85,8 +104,47 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  Future signOut() async {
-    auth.signOut();
+  Future resetPassword(String email, context) async {
+    emit(ResetPasswordLoadingPassword());
+    await FirebaseAuth.instance
+        .sendPasswordResetEmail(email: email)
+        .then((value) {
+      emit(ResetPasswordSuccessPassword());
+      GlobalMethods.showAlertDialog(
+          context: context,
+          title: DefaultCustomText(
+            text: 'Password Reset',
+            alignment: Alignment.center,
+          ),
+          content: DefaultCustomText(
+              maxLines: 3,
+              text:
+                  'Check Your Email and follow the link to Make new Password'),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                GlobalMethods.navigateAndFinish(context, LoginScreen());
+              },
+              child: DefaultCustomText(
+                alignment: Alignment.centerRight,
+                text: 'Password Reset',
+              ),
+            ),
+          ]);
+    });
+  }
+
+  Future signOut(context) async {
+    auth.signOut().then((value) {
+      GlobalMethods.navigateAndFinish(context, UserLoginStates());
+    });
     emit(SignOutSuccessState());
+  }
+
+  Future deleteUser(context) async {
+    auth.currentUser!.delete().then((value) {
+      GlobalMethods.navigateAndFinish(context, UserLoginStates());
+    });
+    emit(DeleteSuccessState());
   }
 }

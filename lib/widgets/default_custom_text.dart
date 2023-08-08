@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/values_manager.dart';
 
 class DefaultCustomText extends StatelessWidget {
   const DefaultCustomText({
@@ -23,12 +24,12 @@ class DefaultCustomText extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Align(
         alignment: alignment ?? Alignment.centerLeft,
-        child: Text(text,
+        child: Text(
+          text,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontSize: fontSize,
-
-                color: color,
-                fontWeight: fontWeight,
+                fontSize: fontSize ?? AppSize.s12,
+                color: color ?? Colors.white,
+                fontWeight: fontWeight ?? FontWeight.bold,
               ),
           maxLines: maxLines,
           overflow: TextOverflow.ellipsis,

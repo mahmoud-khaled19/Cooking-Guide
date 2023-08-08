@@ -4,6 +4,8 @@ class AppInitial extends AppState {}
 
 class ChangeVisibilityState extends AppState {}
 
+class ChangeFavouriteItemIconState extends AppState {}
+
 class RandomMealLoadingState extends AppState {}
 
 class BottomNavigationBarScreensChange extends AppState {}

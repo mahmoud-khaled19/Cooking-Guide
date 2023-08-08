@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/view_model/app_cubit.dart';
-import '../view_model/app_state.dart';
-import 'components/meal_item.dart';
+import 'package:food_app/view_model/app_cubit/app_cubit.dart';
+import '../../view_model/app_cubit/app_state.dart';
+import 'meal_details_screen.dart';
 
-class RandomMeal extends StatelessWidget {
-  const RandomMeal({Key? key}) : super(key: key);
+class RandomMealScreen extends StatelessWidget {
+  const RandomMealScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class RandomMeal extends StatelessWidget {
                 var mealData = cubit.detailsMealModel!.meals![index];
                 if (mealData.mealContent1!.isNotEmpty ||
                     mealData.mealContent11 == null) {
-                  return MealItem(
+                  return MealDetailsScreen(
                     image: mealData.mealImage,
                     mealName: mealData.mealName,
                     mealCountry: mealData.mealCountry,

@@ -29,7 +29,6 @@ class FavouriteItem extends StatelessWidget {
           height: AppSize.s10,
         ),
         DefaultCustomText(
-          fontSize: AppSize.s12,
           text: name!,
           color: color ?? Colors.white,
           alignment: Alignment.center,

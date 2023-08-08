@@ -19,7 +19,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String name,
-    required String phone,
   }) async {
     emit(RegisterWithEmailAndPasswordLoadingState());
     await auth
@@ -30,7 +29,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         .then((value) {
       addUserDataToFirebase(
         name: name,
-        phone: phone,
         password: password,
         email: email,
       );
@@ -39,7 +37,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     }).catchError((error) {
       GlobalMethods.showAlertDialog(
           context: context,
-          title:  Text(error.toString()),
+          title: Text(error.toString()),
           actions: [
             TextButton(
                 onPressed: () {
@@ -49,6 +47,13 @@ class RegisterCubit extends Cubit<RegisterState> {
           ]);
       emit(RegisterWithEmailAndPasswordErrorState());
     });
+  }
+
+  bool confirmPassword(String passwordController, confirmPasswordController) {
+    if (passwordController != confirmPasswordController) {
+      return false;
+    }
+    return true;
   }
 
   bool isVisible = true;
@@ -66,7 +71,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Future addUserDataToFirebase({
     required String name,
-    required String phone,
     required String password,
     required String email,
   }) async {
@@ -75,7 +79,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       'name': name,
       'password': password,
       'email': email,
-      'phone': phone,
       'uid': id,
     });
     emit(AddUserDataToFirebaseSuccessState());

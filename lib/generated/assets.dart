@@ -7,6 +7,7 @@ class Assets {
   static const String imagesGmail = 'assets/images/gmail.png';
   static const String imagesLogin = 'assets/images/login.png';
   static const String imagesLoginScreen = 'assets/images/login_screen.png';
+  static const String imagesNoPage = 'assets/images/no_page.png';
   static const String imagesSearch = 'assets/images/search.png';
 
 }

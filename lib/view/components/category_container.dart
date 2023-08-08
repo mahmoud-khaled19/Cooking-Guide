@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import '../../utils/values_manager.dart';
 import '../../widgets/default_custom_text.dart';
 
-class CategoryList extends StatelessWidget {
-  const CategoryList({
+class CategoryContainer extends StatelessWidget {
+  const CategoryContainer({
     Key? key,
     required this.function,
     required this.text,
     required this.length,
   }) : super(key: key);
   final Function() function;
-  final String text ;
-  final int length ;
+  final String text;
+  final int length;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class CategoryList extends StatelessWidget {
         margin: const EdgeInsets.only(right: 10),
         child: DefaultCustomText(
           alignment: Alignment.center,
-          color: Colors.white,
           text: text,
-          fontSize: AppSize.s12,
         ),
       ),
     );

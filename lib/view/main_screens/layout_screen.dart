@@ -1,9 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/view_model/app_cubit.dart';
+import 'package:food_app/utils/values_manager.dart';
+import 'package:food_app/view_model/app_cubit/app_cubit.dart';
 import 'package:food_app/view_model/home_layout_view_model.dart';
-import '../view_model/app_state.dart';
+import '../../view_model/app_cubit/app_state.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({Key? key}) : super(key: key);
@@ -30,7 +31,10 @@ class LayoutScreen extends StatelessWidget {
               Icon(Icons.person, size: 30),
             ],
           ),
-          body: HomeLayoutViewModel.screens[cubit.currentPage],
+          body: Padding(
+            padding:  EdgeInsets.all(AppSize.s10),
+            child: HomeLayoutViewModel.screens[cubit.currentPage],
+          ),
         );
       },
     );

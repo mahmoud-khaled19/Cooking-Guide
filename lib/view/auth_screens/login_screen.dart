@@ -5,7 +5,7 @@ import 'package:food_app/utils/global_methods.dart';
 import 'package:food_app/utils/strings_manager.dart';
 import 'package:food_app/utils/values_manager.dart';
 import 'package:food_app/view/auth_screens/register_screen.dart';
-import 'package:food_app/view/forget_password_screen.dart';
+import 'package:food_app/view/auth_screens/forget_password_screen.dart';
 import 'package:food_app/view_model/login_cubit/login_cubit.dart';
 import 'package:food_app/widgets/default_custom_text.dart';
 import 'package:food_app/widgets/elevated_button_widget.dart';
@@ -22,7 +22,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hSize = MediaQuery.sizeOf(context).height;
-
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         LoginCubit cubit = BlocProvider.of(context);
@@ -53,12 +52,13 @@ class LoginScreen extends StatelessWidget {
                               DefaultCustomText(
                                 text: 'Welcome !',
                                 alignment: Alignment.center,
+                                color: Theme.of(context).splashColor,
                                 fontSize: AppSize.s20,
                               ),
                               DefaultCustomText(
                                 alignment: Alignment.center,
                                 text: 'sign in to continue',
-                                color: Colors.grey[800],
+                                color: Theme.of(context).splashColor,
                               ),
                               SizedBox(
                                 height: AppSize.s20,
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   GlobalMethods.navigateTo(
-                                      context, const ForgetPasswordScreen());
+                                      context, ForgetPasswordScreen());
                                 },
                                 child: DefaultCustomText(
                                   alignment: Alignment.centerRight,
@@ -110,7 +110,6 @@ class LoginScreen extends StatelessWidget {
                                     state
                                         is SignInWithEmailAndPasswordErrorState,
                                 child: DefaultButton(
-                                    width: AppSize.s120,
                                     text: AppStrings.login,
                                     function: () {
                                       if (formKey.currentState!.validate()) {
@@ -136,7 +135,7 @@ class LoginScreen extends StatelessWidget {
                                 height: AppSize.s8,
                               ),
                               GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   cubit.signInWithGoogle(context);
                                 },
                                 child: CircleAvatar(
@@ -163,7 +162,6 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         DefaultCustomText(
                           text: AppStrings.dontHaveAccount,
-                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: AppSize.s10,
                         ),
@@ -174,9 +172,7 @@ class LoginScreen extends StatelessWidget {
                           },
                           child: DefaultCustomText(
                             text: AppStrings.register,
-                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: AppSize.s12,
                           ),
                         ),
                       ],
