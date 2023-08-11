@@ -95,7 +95,7 @@ class LoginCubit extends Cubit<LoginState> {
       userName = userCredential.user!.displayName;
       // Successful sign-in
       emit(SignInWithGoogleSuccessState());
-      GlobalMethods.navigateAndFinish(context, LayoutScreen());
+      GlobalMethods.navigateAndFinish(context, UserLoginStates());
       return userCredential;
     } catch (error) {
       print(error.toString());

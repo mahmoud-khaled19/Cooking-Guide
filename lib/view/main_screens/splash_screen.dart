@@ -4,6 +4,7 @@ import 'package:food_app/generated/assets.dart';
 import '../../utils/values_manager.dart';
 import '../../widgets/default_custom_text.dart';
 import '../auth_screens/login_screen.dart';
+import '../auth_screens/user_login_states_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen: LoginScreen(),
+      nextScreen: UserLoginStates(),
       splashTransition: SplashTransition.slideTransition,
       backgroundColor: Theme.of(context).cardColor,
     );

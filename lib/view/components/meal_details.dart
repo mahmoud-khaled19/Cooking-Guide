@@ -14,8 +14,7 @@ class MealDetails extends StatelessWidget {
         AppCubit cubit = BlocProvider.of(context);
         return Scaffold(
             body: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             var mealData = cubit.detailsMealModel!.meals![index];
             return MealDetailsScreen(

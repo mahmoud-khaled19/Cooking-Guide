@@ -17,22 +17,24 @@ import '../empty_screen.dart';
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
   final TextEditingController searchController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
+
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         SearchCubit cubit = BlocProvider.of(context);
         AppCubit appCubit = BlocProvider.of(context);
         return Form(
-          key: formKey,
+          key: formKey1,
           child: Column(
             children: [
               DefaultTextFormField(
                   onSubmittedFunction: () {
-                    if (formKey.currentState!.validate()) {
+                    if (formKey1.currentState!.validate()) {
                       cubit.searchMeals(searchController.text.trim(), context);
+                      searchController.clear();
                       cubit.removeShownData();
                     }
                   },
@@ -96,7 +98,7 @@ class SearchScreen extends StatelessWidget {
                           );
                         } else {
                           return const EmptyScreen(
-                            text: 'start Searching Now 🔎',
+                            text: AppStrings.errorMessage,
                             image: Assets.imagesNoPage,
                           );
                         }
@@ -107,7 +109,7 @@ class SearchScreen extends StatelessWidget {
                         );
                     }
                     return const EmptyScreen(
-                      text: 'start Searching Now 🔎',
+                      text: 'Start Searching Now 🔎',
                       image: Assets.imagesSearch,
                     );
                   },

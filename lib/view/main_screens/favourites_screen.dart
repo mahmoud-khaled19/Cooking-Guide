@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/generated/assets.dart';
+import 'package:food_app/utils/global_methods.dart';
+import 'package:food_app/view/components/meal_details.dart';
 import 'package:food_app/view/components/meal_item_shape.dart';
 import 'package:food_app/view/empty_screen.dart';
 import 'package:food_app/view_model/app_cubit/app_cubit.dart';
@@ -40,24 +42,15 @@ class FavouritesScreen extends StatelessWidget {
                     childAspectRatio: 0.75,
                     crossAxisSpacing: 10,
                     children: List.generate(data.length, (index) {
-                      return Stack(
-                        alignment: Alignment.topRight,
-                        children: [
-                          FavouriteItem(
-                              color: Colors.black,
-                              name: data[index]['mealName'],
-                              image: data[index]['image']),
-                          GestureDetector(
-                            onTap: (){
-                              cubit.deleteFavourite(
-                                  data[index]['mealId'], context);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Icon(Icons.delete,color: Colors.red,),
-                            ),
-                          )
-                        ],
+                      return GestureDetector(
+                        onTap: () {
+                          GlobalMethods.navigateTo(context, MealDetails());
+                        },
+                        child: FavouriteItem(
+                          color: Colors.black,
+                          name: data[index]['mealName'],
+                          image: data[index]['image'],
+                        ),
                       );
                     }),
                   );
@@ -76,5 +69,4 @@ class FavouritesScreen extends StatelessWidget {
       },
     );
   }
-
 }

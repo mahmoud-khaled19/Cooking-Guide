@@ -20,146 +20,155 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = BlocProvider.of(context);
         LoginCubit loginCubit = BlocProvider.of(context);
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              DefaultCustomText(
-                text: 'Hello, ${loginCubit.userName ?? 'Guest'}',
-                fontWeight: FontWeightManager.semiBold,
-                color: Colors.grey[600],
-              ),
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DefaultCustomText(
-                        text: 'What Would you Like ',
-                        fontSize: AppSize.s16,
-                        color: Theme.of(context).splashColor,
-                      ),
-                      DefaultCustomText(
-                        text: 'to cook today?',
-                        fontSize: AppSize.s16,
-                        color: Theme.of(context).splashColor,
-                      ),
-                    ],
-                  ),
-                  ClipRect(
-                    child: Image(
-                      image: AssetImage(Assets.imagesChefRafiki),
-                      height: AppSize.s100,
-                      width: AppSize.s100,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: AppSize.s30,
-              ),
-              DefaultCustomText(
-                text: 'Categories',
-                fontSize: AppSize.s16,
-                color: Theme.of(context).splashColor,
-              ),
-              SizedBox(
-                height: AppSize.s8,
-              ),
-              SizedBox(
-                height: AppSize.s40,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          var data =
-                              cubit.categoryModel?.meals![index].categoryName!;
-                          return data != null
-                              ? CategoryContainer(
-                                  function: () {
-                                    cubit.getMealsCategoryFilter(data, context);
-                                  },
-                                  text: data,
-                                  length: cubit.categoryModel!.meals!.length,
-                                )
-                              : const CircularProgressIndicator();
-                        },
-                        itemCount: cubit.categoryModel?.meals!.length,
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: AppSize.s16,
-              ),
-              DefaultCustomText(
-                text: 'Area',
-                fontSize: AppSize.s16,
-                color: Theme.of(context).splashColor,
-              ),
-              SizedBox(
-                height: AppSize.s8,
-              ),
-              SizedBox(
-                height: AppSize.s40,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          var data = cubit.areaModel?.meals![index].areaName!;
-                          return data != null
-                              ? CategoryContainer(
-                                  function: () {
-                                    cubit.getMealsAreaFilter(data, context);
-                                  },
-                                  text: data,
-                                  length: cubit.areaModel!.meals!.length,
-                                )
-                              : const CircularProgressIndicator();
-                        },
-                        itemCount: cubit.areaModel?.meals!.length,
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: AppSize.s20,
-              ),
-              DefaultCustomText(
-                text: 'Do you want the app',
-                fontSize: AppSize.s16,
-                color: Theme.of(context).splashColor,
-              ),
-              Row(
+        return Stack(
+          children: [
+            Center(child: Image(image: AssetImage(Assets.imagesCook))),
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
                 children: [
                   DefaultCustomText(
-                    text: 'choose for you?  ',
+                    text: 'Hello, ${loginCubit.userName ?? 'Guest'}',
+                    fontWeight: FontWeightManager.semiBold,
+                    color: Colors.grey[600],
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DefaultCustomText(
+                            text: 'What Would you Like ',
+                            fontSize: AppSize.s16,
+                            color: Theme.of(context).splashColor,
+                          ),
+                          DefaultCustomText(
+                            text: 'to cook today?',
+                            fontSize: AppSize.s16,
+                            color: Theme.of(context).splashColor,
+                          ),
+                        ],
+                      ),
+                      ClipRect(
+                        child: Image(
+                          image: AssetImage(Assets.imagesChefRafiki),
+                          height: AppSize.s100,
+                          width: AppSize.s100,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: AppSize.s30,
+                  ),
+                  DefaultCustomText(
+                    text: 'Categories',
                     fontSize: AppSize.s16,
                     color: Theme.of(context).splashColor,
                   ),
-                  InkWell(
-                    onTap: () {
-                      cubit.getRandomMeal().then((value) {
-                        GlobalMethods.navigateTo(
-                            context, const RandomMealScreen());
-                      });
-                    },
-                    child: DefaultCustomText(
-                      text: 'choose',
-                      color: Colors.blue,
+                  SizedBox(
+                    height: AppSize.s8,
+                  ),
+                  SizedBox(
+                    height: AppSize.s40,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              var data = cubit
+                                  .categoryModel?.meals![index].categoryName!;
+                              return data != null
+                                  ? CategoryContainer(
+                                      function: () {
+                                        cubit.getMealsCategoryFilter(
+                                            data, context);
+                                      },
+                                      text: data,
+                                      length:
+                                          cubit.categoryModel!.meals!.length,
+                                    )
+                                  : const CircularProgressIndicator();
+                            },
+                            itemCount: cubit.categoryModel?.meals!.length,
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
+                  SizedBox(
+                    height: AppSize.s16,
+                  ),
+                  DefaultCustomText(
+                    text: 'Area',
+                    fontSize: AppSize.s16,
+                    color: Theme.of(context).splashColor,
+                  ),
+                  SizedBox(
+                    height: AppSize.s8,
+                  ),
+                  SizedBox(
+                    height: AppSize.s40,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              var data =
+                                  cubit.areaModel?.meals![index].areaName!;
+                              return data != null
+                                  ? CategoryContainer(
+                                      function: () {
+                                        cubit.getMealsAreaFilter(data, context);
+                                      },
+                                      text: data,
+                                      length: cubit.areaModel!.meals!.length,
+                                    )
+                                  : const CircularProgressIndicator();
+                            },
+                            itemCount: cubit.areaModel?.meals!.length,
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSize.s20,
+                  ),
+                  DefaultCustomText(
+                    text: 'Do you want the app',
+                    fontSize: AppSize.s16,
+                    color: Theme.of(context).splashColor,
+                  ),
+                  Row(
+                    children: [
+                      DefaultCustomText(
+                        text: 'choose for you?  ',
+                        fontSize: AppSize.s16,
+                        color: Theme.of(context).splashColor,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          cubit.getRandomMeal().then((value) {
+                            GlobalMethods.navigateTo(
+                                context, const RandomMealScreen());
+                          });
+                        },
+                        child: DefaultCustomText(
+                          text: 'choose',
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

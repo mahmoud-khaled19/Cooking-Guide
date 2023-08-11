@@ -6,9 +6,11 @@ class AppStrings {
   static const String home = 'Home';
   static const String favourites = 'Favourites';
   static const String search = 'Search';
+  static const String settings = 'Settings';
   static const String personalInfo = 'personal Info';
   static const String login = 'Sign in';
   static const String register = 'Sign up';
+  static const String signOut = 'Sign Out';
   static const String resetPassword = 'Reset';
   static const String loading = 'Loading ....';
 

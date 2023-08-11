@@ -84,46 +84,43 @@ class MealDetailsScreen extends StatelessWidget {
                                         .favouritesCollection
                                         .where('mealName', isEqualTo: mealName!)
                                         .get();
-
                                     if (item.size == 0) {
-                                      // Item doesn't exist in favorites, add it
                                       await cubit.addFavourite(
                                         context: context,
                                         image: image!,
                                         mealName: mealName!,
                                         mealCountry: mealCountry!,
-                                        source: source!,
+                                        source: source ?? '',
                                         videoUrl: videoUrl!,
                                         mealInstructions: mealInstructions!,
                                         items: items!,
                                         quantity: quantity!,
-                                        isFavourite: true,
                                       );
                                     } else {
-                                      // Item exists in favorites, remove it
+                                      cubit.deleteFavourite(mealName!, context);
                                     }
                                   },
-                                  child: FutureBuilder<bool>(
-                                    future:
-                                        cubit.checkItemInFavorites(mealName),
+                                  child: StreamBuilder<bool>(
+                                    stream: cubit.streamItemInFavorites(mealName),
                                     builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
                                         return CircularProgressIndicator();
+                                      } else if (snapshot.hasError) {
+                                        return Text('Error: ${snapshot.error}');
                                       }
-                                      final isItemInFavorites =
-                                          snapshot.data ?? false;
+
+                                      final isItemInFavorites = snapshot.data ?? false;
+
                                       return Icon(
                                         isItemInFavorites
                                             ? Icons.favorite
                                             : Icons.favorite_outline_rounded,
                                         size: AppSize.s30,
-                                        color: isItemInFavorites
-                                            ? Colors.red
-                                            : Colors.black,
+                                        color: isItemInFavorites ? Colors.red : Colors.grey,
                                       );
                                     },
-                                  ),
+                                  )
+                                  ,
                                 ),
                                 SizedBox(
                                   width: AppSize.s10,

@@ -1,20 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/model/area_model.dart';
 import 'package:food_app/model/category_and_area_filter_model.dart';
 import 'package:food_app/model/category_model.dart';
 import 'package:food_app/model/random_meal_model.dart';
 import 'package:food_app/utils/api_constance.dart';
+import 'package:food_app/view/main_screens/home_screen.dart';
 import 'package:food_app/view/main_screens/search_screen.dart';
 import 'package:uuid/uuid.dart';
 import '../../utils/global_methods.dart';
 import '../../view/cat&area_details_screen.dart';
 import '../../view/main_screens/favourites_screen.dart';
 import '../../view/main_screens/layout_screen.dart';
-import '../../view/main_screens/settings_screen.dart';
 import 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -30,31 +29,32 @@ class AppCubit extends Cubit<AppState> {
   FirebaseFirestore authStore = FirebaseFirestore.instance;
   final favouritesCollection =
       FirebaseFirestore.instance.collection('favourites');
-  IconData favIcon = Icons.favorite_outline_rounded;
 
   void changeScreen(index) {
     currentPage = index;
     appScreenBody();
     emit(BottomNavigationBarScreensChange());
   }
+  Stream<bool> streamItemInFavorites(String? mealName) {
+    if (mealName == null) {
+      return Stream.value(false); // Emit a default value if mealName is null.
+    }
 
-  Future<bool> checkItemInFavorites(String? mealName) async {
-    final item = await favouritesCollection
-        .where('mealName', isEqualTo: mealName!)
-        .get();
-    return item.size > 0;
+    return favouritesCollection
+        .where('mealName', isEqualTo: mealName)
+        .snapshots()
+        .map((snapshot) => snapshot.size > 0);
   }
+
 
   appScreenBody() {
     if (currentPage == 0) {
-      return SearchScreen();
+      return HomeScreen();
     } else if (currentPage == 1) {
-      return const LayoutScreen();
+      return  SearchScreen();
     } else if (currentPage == 2) {
-      return const FavouritesScreen();
-    } else {
-      const SettingsScreen();
-    }
+      return const FavouritesScreen();}
+
   }
 
   Future getRandomMeal() async {
@@ -116,14 +116,10 @@ class AppCubit extends Cubit<AppState> {
     required String videoUrl,
     required String mealInstructions,
     required List items,
-    required bool isFavourite,
     required List quantity,
   }) async {
-    var mealId = const Uuid().v4();
-    await favouritesCollection.doc(mealId).set({
+    await favouritesCollection.doc(mealName).set({
       'userId': auth.currentUser!.uid,
-      'isFavourite': isFavourite,
-      'mealId': mealId,
       'image': image,
       'mealName': mealName,
       'mealCountry': mealCountry,
@@ -134,10 +130,11 @@ class AppCubit extends Cubit<AppState> {
       'quantity': quantity,
     });
   }
+  void changeFavouriteIcon(){}
 
-  Future deleteFavourite(String mealId, context) async {
+  Future deleteFavourite(String mealName, context) async {
     try {
-      await favouritesCollection.doc(mealId).delete();
+      await favouritesCollection.doc(mealName).delete();
       emit(DeleteFavouriteItem());
     } catch (error) {
       print(error.toString());
