@@ -9,8 +9,8 @@ class FavouriteItem extends StatelessWidget {
     Key? key,
     required this.name,
     required this.image,
-     this.color,
-     this.id,
+    this.color,
+    this.id,
   }) : super(key: key);
   final String? name;
   final String? image;
@@ -23,7 +23,13 @@ class FavouriteItem extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: CachedNetworkImage(imageUrl: image!),
+          child: CachedNetworkImage(
+            imageUrl: image!,
+            placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
         ),
         SizedBox(
           height: AppSize.s10,

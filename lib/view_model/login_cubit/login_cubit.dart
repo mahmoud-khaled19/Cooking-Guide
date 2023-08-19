@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app/view/auth_screens/login_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../utils/global_methods.dart';
 import '../../view/auth_screens/user_login_states_screen.dart';
@@ -110,27 +111,10 @@ class LoginCubit extends Cubit<LoginState> {
         .sendPasswordResetEmail(email: email)
         .then((value) {
       emit(ResetPasswordSuccessPassword());
-      GlobalMethods.showAlertDialog(
-          context: context,
-          title: DefaultCustomText(
-            text: 'Password Reset',
-            alignment: Alignment.center,
-          ),
-          content: DefaultCustomText(
-              maxLines: 3,
-              text:
-                  'Check Your Email and follow the link to Make new Password'),
-          actions: [
-            GestureDetector(
-              onTap: () {
-                GlobalMethods.navigateAndFinish(context, LoginScreen());
-              },
-              child: DefaultCustomText(
-                alignment: Alignment.centerRight,
-                text: 'Password Reset',
-              ),
-            ),
-          ]);
+      GlobalMethods.showSnackBar(context, 'Email Send Successfully', Colors.green);
+    }).catchError((error) {
+      GlobalMethods.showSnackBar(context, 'write a valid Email', Colors.red);
+      log(error.toString());
     });
   }
 

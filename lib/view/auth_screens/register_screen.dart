@@ -8,7 +8,6 @@ import '../../utils/values_manager.dart';
 import '../../widgets/default_custom_text.dart';
 import '../../widgets/elevated_button_widget.dart';
 import '../../widgets/text_form_field_widget.dart';
-import '../components/clipper_class.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -27,32 +26,39 @@ class RegisterScreen extends StatelessWidget {
       builder: (context, state) {
         RegisterCubit cubit = BlocProvider.of(context);
         return Scaffold(
+          appBar: AppBar(),
           body: SafeArea(
             child: Form(
               key: formKey,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: size * 0.08,
-                    ),
-                    ClipPath(
-                      clipper: ClipperPath(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   Expanded(
+                     child: Center(
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: AppSize.s40),
-                        height: size * 0.8,
-                        color: Colors.white,
-                        child: Column(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        padding: EdgeInsets.symmetric(horizontal: size * 0.02),
+                        margin: EdgeInsets.symmetric(horizontal: size * 0.03),
+                        height: size * 0.7,
+                        child: ListView(
+                          physics: const BouncingScrollPhysics(),
                           children: [
                             SizedBox(
-                              height: size * 0.05,
+                              height: AppSize.s20,
+                            ),
+                            DefaultCustomText(
+                              text: 'Welcome !',
+                              alignment: Alignment.center,
+                              color: Theme.of(context).splashColor,
+                              fontSize: AppSize.s20,
                             ),
                             DefaultCustomText(
                               color: Theme.of(context).splashColor,
                               alignment: Alignment.center,
-                              text: AppStrings.register,
-                              fontSize: AppSize.s20,
+                              text: AppStrings.registerScreenMessage,
+                              fontSize: AppSize.s16,
                             ),
                             SizedBox(
                               height: AppSize.s10,
@@ -135,32 +141,39 @@ class RegisterScreen extends StatelessWidget {
                                 context: context,
                               ),
                             ),
+                            SizedBox(
+                              height: AppSize.s18,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                DefaultCustomText(
+                                  text: AppStrings.alreadyHaveAccount,
+                                  fontWeight: FontWeight.normal,
+                                  color: Theme.of(context).splashColor,
+
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    GlobalMethods.navigateAndFinish(
+                                        context, LoginScreen());
+                                  },
+                                  child: DefaultCustomText(
+                                    text: AppStrings.login,
+                                    fontWeight: FontWeight.w700,
+                                    color: Theme.of(context).splashColor,
+
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DefaultCustomText(
-                          text: AppStrings.alreadyHaveAccount,
-                          fontWeight: FontWeight.normal,
-                          fontSize: AppSize.s10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            GlobalMethods.navigateAndFinish(
-                                context, LoginScreen());
-                          },
-                          child: DefaultCustomText(
-                            text: AppStrings.login,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                  ),
+                   ),
+
+                ],
               ),
             ),
           ),

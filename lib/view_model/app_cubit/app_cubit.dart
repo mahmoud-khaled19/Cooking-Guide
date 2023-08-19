@@ -9,11 +9,9 @@ import 'package:food_app/model/random_meal_model.dart';
 import 'package:food_app/utils/api_constance.dart';
 import 'package:food_app/view/main_screens/home_screen.dart';
 import 'package:food_app/view/main_screens/search_screen.dart';
-import 'package:uuid/uuid.dart';
 import '../../utils/global_methods.dart';
 import '../../view/cat&area_details_screen.dart';
 import '../../view/main_screens/favourites_screen.dart';
-import '../../view/main_screens/layout_screen.dart';
 import 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -87,7 +85,7 @@ class AppCubit extends Cubit<AppState> {
         .get('${ApiConstance.baseUrl}/filter.php?c=$categoryName')
         .then((value) {
       mealFilter = MealFilter.fromJson(value.data);
-      GlobalMethods.navigateTo(context, DetailsScreen(title: categoryName));
+      GlobalMethods.navigateTo(context, CategoryAndAreaFilterDetailsScreen(title: categoryName));
       emit(FilterMealSuccessState());
     }).catchError((error) {
       emit(FilterMealErrorState());
@@ -100,7 +98,7 @@ class AppCubit extends Cubit<AppState> {
         .get('${ApiConstance.baseUrl}/filter.php?a=$areaName')
         .then((value) {
       mealFilter = MealFilter.fromJson(value.data);
-      GlobalMethods.navigateTo(context, DetailsScreen(title: areaName));
+      GlobalMethods.navigateTo(context, CategoryAndAreaFilterDetailsScreen(title: areaName));
       emit(FilterMealSuccessState());
     }).catchError((error) {
       emit(FilterMealErrorState());
