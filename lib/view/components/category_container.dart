@@ -20,7 +20,7 @@ class CategoryContainer extends StatelessWidget {
       child: Container(
         width: AppSize.s100,
         decoration: BoxDecoration(
-            color: Theme.of(context).splashColor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.only(right: 10),
         child: DefaultCustomText(

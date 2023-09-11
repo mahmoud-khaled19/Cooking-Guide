@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/view/auth_screens/login/login_screen.dart';
 import 'package:food_app/view_model/register_cubit/register_state.dart';
-
 import '../../utils/global_methods.dart';
-import '../../view/auth_screens/login_screen.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());

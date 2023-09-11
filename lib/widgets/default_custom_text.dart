@@ -28,8 +28,8 @@ class DefaultCustomText extends StatelessWidget {
           text,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontSize: fontSize ?? AppSize.s12,
-                color: color ?? Colors.white,
                 fontWeight: fontWeight ?? FontWeight.bold,
+            color: color
               ),
           maxLines: maxLines,
           overflow: TextOverflow.ellipsis,

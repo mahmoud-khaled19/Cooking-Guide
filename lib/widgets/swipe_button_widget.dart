@@ -6,9 +6,9 @@ class SwipeButtonWidget extends StatefulWidget {
   SwipeButtonWidget(
       {Key? key, required this.isFinished, required this.function})
       : super(key: key);
-  bool isFinished;
+  late final bool isFinished;
 
-  Function() function;
+  final Function() function;
 
   @override
   State<SwipeButtonWidget> createState() => _SwipeButtonWidgetState();
@@ -18,20 +18,19 @@ class _SwipeButtonWidgetState extends State<SwipeButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return SwipeableButtonView(
-
         isFinished: widget.isFinished,
         buttonText: 'Watch video',
-        buttontextstyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeightManager.semiBold
-        ),
-
+        buttontextstyle: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(fontWeight: FontWeightManager.semiBold),
         buttonWidget: Container(
           child: Icon(
             Icons.video_collection_sharp,
+            color: Theme.of(context).splashColor,
           ),
         ),
-        activeColor: Colors.white60,
+        activeColor: Theme.of(context).splashColor,
         onWaitingProcess: () {
           Future.delayed(Duration(microseconds: 500), () {
             setState(() {

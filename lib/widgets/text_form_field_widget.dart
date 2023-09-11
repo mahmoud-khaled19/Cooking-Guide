@@ -16,10 +16,12 @@ class DefaultTextFormField extends StatelessWidget {
   final int? maxLines;
   final String? hint;
   final Function()? onSubmittedFunction;
+  final Function(String? val)? onChanged;
 
   const DefaultTextFormField({
     super.key,
     this.onSubmittedFunction,
+    this.onChanged,
     this.maxLength,
     this.enabled,
     this.hint,
@@ -42,36 +44,41 @@ class DefaultTextFormField extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        GestureDetector(
-          onTap: function,
-          child: TextFormField(
-            enabled: enabled,
-            maxLength: maxLength,
-            maxLines: maxLines,
-            onEditingComplete: onSubmittedFunction,
-            textInputAction: textTypeAction,
-            style: Theme.of(context).textTheme.titleSmall,
-            obscureText: isSecure,
-            keyboardType: textType,
-            controller: controller,
-            validator: validate,
-            decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                  onTap: suffixFunction,
-                  child: Icon(
-                    suffixIcon,
-                  )),
-              hintText: hint,
-              hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Colors.grey
-              ),
-              border:  OutlineInputBorder(
-                borderSide:  BorderSide(
-                  color: Theme.of(context).splashColor
+        TextFormField(
+          focusNode:focusNode,
+          enabled: enabled,
+          maxLength: maxLength,
+          maxLines: maxLines,
+          onEditingComplete: onSubmittedFunction,
+          onChanged: onChanged,
+          textInputAction: textTypeAction ,
+          style: Theme
+              .of(context)
+              .textTheme
+              .titleSmall,
+          obscureText: isSecure,
+          keyboardType: textType,
+          controller: controller,
+          validator: validate,
+          decoration: InputDecoration(
+            suffixIcon: GestureDetector(
+                onTap: suffixFunction,
+                child: Icon(
+                  suffixIcon,
+                )),
+            hintText: hint,
+            hintStyle: Theme
+                .of(context)
+                .textTheme
+                .titleMedium,
+            border: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Theme
+                        .of(context)
+                        .splashColor
                 ),
 
                 borderRadius: BorderRadius.circular(10)
-              ),
             ),
           ),
         ),

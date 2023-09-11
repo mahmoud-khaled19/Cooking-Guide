@@ -5,7 +5,7 @@ import 'package:food_app/generated/assets.dart';
 import 'package:food_app/utils/global_methods.dart';
 import 'package:food_app/view/components/meal_details.dart';
 import 'package:food_app/view/components/meal_item_shape.dart';
-import 'package:food_app/view/empty_screen.dart';
+import 'package:food_app/view/main_screens/empty_screen.dart';
 import 'package:food_app/view_model/app_cubit/app_cubit.dart';
 import 'package:food_app/widgets/default_custom_text.dart';
 import '../../utils/strings_manager.dart';
@@ -46,8 +46,7 @@ class FavouritesScreen extends StatelessWidget {
                         onTap: () {
                           GlobalMethods.navigateTo(context, MealDetails());
                         },
-                        child: FavouriteItem(
-                          color: Colors.black,
+                        child: MealItemShape(
                           name: data[index]['mealName'],
                           image: data[index]['image'],
                         ),

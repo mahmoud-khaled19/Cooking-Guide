@@ -5,13 +5,13 @@ import 'package:food_app/utils/strings_manager.dart';
 import 'package:food_app/utils/theme_manager.dart';
 import 'package:food_app/view/auth_screens/user_login_states_screen.dart';
 import 'package:food_app/view_model/app_cubit/app_cubit.dart';
+import 'package:food_app/view_model/app_cubit/app_state.dart';
 import 'package:food_app/view_model/app_cubit/bloc%20observer.dart';
 import 'package:food_app/view_model/login_cubit/login_cubit.dart';
 import 'package:food_app/view_model/register_cubit/register_cubit.dart';
 import 'package:food_app/view_model/search_view_model/search_cubit.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 
 void main() async {
@@ -23,7 +23,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -34,12 +33,15 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppCubit>(
-          create: (BuildContext context) => AppCubit()
+          create: (BuildContext context) =>
+          AppCubit()
             ..getMealsCategory()
             ..getMealsArea(),
         ),
         BlocProvider<LoginCubit>(
-            create: (BuildContext context) => LoginCubit()..getUserData()),
+            create: (BuildContext context) =>
+            LoginCubit()
+              ..getUserData()),
         BlocProvider<SearchCubit>(
             create: (BuildContext context) => SearchCubit()),
         BlocProvider<RegisterCubit>(
@@ -49,12 +51,17 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context , child){
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: AppStrings.appTitle,
-            theme: getLightApplicationTheme(),
-            home: UserLoginStates(),
+        builder: (context, child) {
+          return BlocBuilder<AppCubit, AppState>(
+            builder: (context, state) {
+              AppCubit cubit = BlocProvider.of(context);
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: AppStrings.appTitle,
+                theme: cubit.isDark?getDarkApplicationTheme(): getLightApplicationTheme(),
+                home: UserLoginStates(),
+              );
+            },
           );
         },
       ),

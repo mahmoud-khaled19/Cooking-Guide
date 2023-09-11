@@ -6,36 +6,36 @@ import 'colors_manager.dart';
 
 ThemeData getLightApplicationTheme() {
   return ThemeData(
+
+      useMaterial3: true,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
-        ColorsManager.lightIconsColor,
+        ColorsManager.lightSecondColor,
       ))),
+      listTileTheme: ListTileThemeData(
+        iconColor: ColorsManager.darkScaffoldColor,
+      ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
           titleTextStyle: GoogleFonts.alegreya(
-              color: Colors.white, fontSize: AppSize.s16, letterSpacing: 0.6),
+              color: Colors.black, fontSize: AppSize.s16, letterSpacing: 0.6),
           backgroundColor: ColorsManager.lightScaffoldColor,
           elevation: 0,
-          iconTheme: IconThemeData(color: Colors.white,size: AppSize.s18)),
-      drawerTheme:
-          DrawerThemeData(backgroundColor: ColorsManager.lightScaffoldColor),
+          iconTheme: IconThemeData(color: ColorsManager.darkScaffoldColor,size: AppSize.s18)),
       iconTheme: IconThemeData(
           color: ColorsManager.lightIconsColor, size: AppSize.s24),
       scaffoldBackgroundColor: ColorsManager.lightScaffoldColor,
       primarySwatch: Colors.grey,
-      splashColor: ColorsManager.lightIconsColor,
+      splashColor: ColorsManager.lightSecondColor,
       primaryColor: ColorsManager.lightCardColor,
       disabledColor: ColorsManager.grey,
       cardColor: ColorsManager.lightCardColor,
-
       textTheme: TextTheme(
           titleLarge: getSemiBoldStyle(
               fontSize: AppSize.s16, color: ColorsManager.black),
-          ///titles
           titleMedium:
               getMediumStyle(fontSize: AppSize.s14, color: ColorsManager.black),
-          /// buttons
           titleSmall: getRegularStyle(
               fontSize: AppSize.s12, color: ColorsManager.black)),
       brightness: Brightness.light);
@@ -43,35 +43,36 @@ ThemeData getLightApplicationTheme() {
 
 ThemeData getDarkApplicationTheme() {
   return ThemeData(
+      useMaterial3: true,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
         ColorsManager.darkIconsColor,
       ))),
+      listTileTheme: ListTileThemeData(
+        iconColor: ColorsManager.lightScaffoldColor,
+      ),
       appBarTheme: AppBarTheme(
           centerTitle: true,
           backgroundColor: ColorsManager.darkScaffoldColor,
-          elevation: 0,
+          elevation: 4,
           titleTextStyle: GoogleFonts.alegreya(
               color: Colors.white, fontSize: AppSize.s16, letterSpacing: 0.6)),
-      drawerTheme:
-          DrawerThemeData(backgroundColor: ColorsManager.darkScaffoldColor),
-      colorScheme:
-          ColorScheme.dark(background: ColorsManager.lightBackgroundColor),
       iconTheme:
-          IconThemeData(color: ColorsManager.darkIconsColor, size: AppSize.s24),
+          IconThemeData(color: ColorsManager.lightScaffoldColor, size: AppSize.s24),
       scaffoldBackgroundColor: ColorsManager.darkScaffoldColor,
       primarySwatch: Colors.grey,
       splashColor: ColorsManager.darkIconsColor,
       primaryColor: ColorsManager.darkCardColor,
+
       disabledColor: ColorsManager.grey,
       cardColor: ColorsManager.darkCardColor,
       textTheme: TextTheme(
           titleLarge: getSemiBoldStyle(
-              fontSize: AppSize.s16, color: ColorsManager.lightScaffoldColor),
+              fontSize: AppSize.s16, color: Colors.white),
           titleMedium: getMediumStyle(
-              fontSize: AppSize.s14, color: ColorsManager.lightScaffoldColor),
+              fontSize: AppSize.s14, color: Colors.white),
           titleSmall: getRegularStyle(
-              fontSize: AppSize.s12, color: ColorsManager.lightScaffoldColor)),
+              fontSize: AppSize.s12, color: Colors.white)),
       brightness: Brightness.dark);
 }

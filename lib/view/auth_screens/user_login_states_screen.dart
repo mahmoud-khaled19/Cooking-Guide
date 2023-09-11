@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/generated/assets.dart';
+import 'package:food_app/view/auth_screens/login/login_screen.dart';
 import 'package:food_app/view/main_screens/layout_screen.dart';
 import '../../utils/strings_manager.dart';
 import '../../view_model/login_cubit/login_cubit.dart';
 import '../../view_model/login_cubit/login_state.dart';
-import '../empty_screen.dart';
-import 'login_screen.dart';
+import '../main_screens/empty_screen.dart';
 
 class UserLoginStates extends StatelessWidget {
   const UserLoginStates({Key? key}) : super(key: key);

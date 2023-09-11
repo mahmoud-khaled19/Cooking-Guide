@@ -73,6 +73,14 @@ class GlobalMethods {
     await launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
+  static callPhoneNumber(String phoneNumber) async {
+    final Uri url = Uri.parse('tel:///$phoneNumber');
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
   static shareLink(String url) async {
     try {
       Share.share(url, subject: 'Look what I made!');

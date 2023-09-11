@@ -10,14 +10,21 @@ class AppStrings {
   static const String personalInfo = 'personal Info';
   static const String login = 'Sign in';
   static const String register = 'Sign up';
+  static const String delete = 'Delete';
   static const String registerScreenMessage = 'Sign up & Enjoy Cooking ';
   static const String signOut = 'Sign Out';
   static const String resetPassword = 'Reset';
   static const String loading = 'Loading ....';
-
+  static const String callUs = 'Call Us';
+  static const String chatUs = 'Chat Us';
+  static const String mailUs = 'Mail Us';
   static const String labelPassword = '******************';
   static const String labelEmail = 'example@gmail.com';
   static const String labelName = 'mahmoud khaled';
+  static const String contactUs = 'Contact Us';
+  static const String mode = 'Mode';
+  static const String or =
+      'ــــــــــــــــــــــــــــــــــ OR ــــــــــــــــــــــــــــــــ';
 
   static const String emailValidateMessage = 'Write a valid email';
   static const String nameValidateMessage = 'Write a valid Name';

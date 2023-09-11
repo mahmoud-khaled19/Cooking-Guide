@@ -9,7 +9,7 @@ import '../../utils/values_manager.dart';
 import '../../view_model/app_cubit/app_cubit.dart';
 import '../../view_model/app_cubit/app_state.dart';
 import '../../widgets/default_custom_text.dart';
-import '../components/meal_items_components.dart';
+import '../components/meal_ingredients_shape.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   MealDetailsScreen({
@@ -57,7 +57,7 @@ class MealDetailsScreen extends StatelessWidget {
                             Colors.transparent,
                             ColorsManager.lightIconsColor,
                             Colors.black,
-                            Colors.transparent,
+                            Colors.transparent
                           ],
                           stops: [0.0, 0.1, .9, 1.0],
                         ).createShader(
@@ -80,47 +80,31 @@ class MealDetailsScreen extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () async {
-                                    final item = await cubit
-                                        .favouritesCollection
-                                        .where('mealName', isEqualTo: mealName!)
-                                        .get();
-                                    if (item.size == 0) {
-                                      await cubit.addFavourite(
-                                        context: context,
-                                        image: image!,
-                                        mealName: mealName!,
-                                        mealCountry: mealCountry!,
-                                        source: source ?? '',
-                                        videoUrl: videoUrl!,
-                                        mealInstructions: mealInstructions!,
-                                        items: items!,
-                                        quantity: quantity!,
-                                      );
-                                    } else {
-                                      cubit.deleteFavourite(mealName!, context);
-                                    }
+                                    await addToFavourite(cubit, context);
                                   },
                                   child: StreamBuilder<bool>(
-                                    stream: cubit.streamItemInFavorites(mealName),
+                                    stream:
+                                        cubit.streamItemInFavorites(mealName),
                                     builder: (context, snapshot) {
-                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
                                         return CircularProgressIndicator();
                                       } else if (snapshot.hasError) {
                                         return Text('Error: ${snapshot.error}');
                                       }
 
-                                      final isItemInFavorites = snapshot.data ?? false;
+                                      final isItemInFavorites =
+                                          snapshot.data ?? false;
 
                                       return Icon(
                                         isItemInFavorites
                                             ? Icons.favorite
                                             : Icons.favorite_outline_rounded,
                                         size: AppSize.s30,
-                                        color: isItemInFavorites ? Colors.red : Colors.grey,
+                                        color: Colors.red,
                                       );
                                     },
-                                  )
-                                  ,
+                                  ),
                                 ),
                                 SizedBox(
                                   width: AppSize.s10,
@@ -132,7 +116,6 @@ class MealDetailsScreen extends StatelessWidget {
                                   child: Icon(
                                     Icons.share,
                                     size: AppSize.s30,
-                                    color: Colors.blue,
                                   ),
                                 ),
                               ],
@@ -165,7 +148,6 @@ class MealDetailsScreen extends StatelessWidget {
                         ),
                         DefaultCustomText(
                           text: mealCountry ?? ' try country',
-                          color: Colors.white60,
                         ),
                         SizedBox(
                           height: AppSize.s20,
@@ -177,7 +159,6 @@ class MealDetailsScreen extends StatelessWidget {
                         DefaultCustomText(
                           text: mealInstructions ?? '',
                           maxLines: mealInstructions!.length,
-                          color: Colors.white60,
                         ),
                         SizedBox(
                           height: AppSize.s20,
@@ -193,7 +174,7 @@ class MealDetailsScreen extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return MealItemComponents(
+                            return MealIngredientsShape(
                               item1: items![index],
                               quantity1: quantity![index],
                             );
@@ -209,5 +190,26 @@ class MealDetailsScreen extends StatelessWidget {
             ]);
       },
     );
+  }
+
+  addToFavourite(AppCubit cubit, context) async {
+    final item = await cubit.favouritesCollection
+        .where('mealName', isEqualTo: mealName!)
+        .get();
+    if (item.size == 0) {
+      await cubit.addFavourite(
+        context: context,
+        image: image!,
+        mealName: mealName!,
+        mealCountry: mealCountry!,
+        source: source ?? '',
+        videoUrl: videoUrl!,
+        mealInstructions: mealInstructions!,
+        items: items!,
+        quantity: quantity!,
+      );
+    } else {
+      cubit.deleteFavourite(mealName!, context);
+    }
   }
 }

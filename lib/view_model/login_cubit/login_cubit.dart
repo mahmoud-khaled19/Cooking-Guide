@@ -111,7 +111,8 @@ class LoginCubit extends Cubit<LoginState> {
         .sendPasswordResetEmail(email: email)
         .then((value) {
       emit(ResetPasswordSuccessPassword());
-      GlobalMethods.showSnackBar(context, 'Email Send Successfully', Colors.green);
+      GlobalMethods.showSnackBar(
+          context, 'Email Send Successfully', Colors.green);
     }).catchError((error) {
       GlobalMethods.showSnackBar(context, 'write a valid Email', Colors.red);
       log(error.toString());

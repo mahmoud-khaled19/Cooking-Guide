@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/utils/global_methods.dart';
 import 'package:food_app/utils/strings_manager.dart';
 import 'package:food_app/utils/values_manager.dart';
-import 'package:food_app/view/auth_screens/login_screen.dart';
+import 'package:food_app/view/auth_screens/login/login_body.dart';
 import 'package:food_app/view_model/app_cubit/app_cubit.dart';
 import 'package:food_app/view_model/app_cubit/app_state.dart';
 import 'package:food_app/view_model/login_cubit/login_cubit.dart';
@@ -88,7 +88,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: (){
-                            GlobalMethods.navigateAndFinish(context, LoginScreen());
+                            GlobalMethods.navigateAndFinish(context, LoginBody());
                           },
                           child: DefaultCustomText(
                             text: 'Go Back',

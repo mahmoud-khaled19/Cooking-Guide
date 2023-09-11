@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../widgets/default_custom_text.dart';
 
-class MealItemComponents extends StatelessWidget {
-  const MealItemComponents(
+class MealIngredientsShape extends StatelessWidget {
+  const MealIngredientsShape(
       {Key? key, required this.item1, required this.quantity1})
       : super(key: key);
   final String item1;

@@ -12,7 +12,7 @@ import '../../utils/strings_manager.dart';
 import '../../view_model/app_cubit/app_cubit.dart';
 import '../components/meal_details.dart';
 import '../components/meal_item_shape.dart';
-import '../empty_screen.dart';
+import 'empty_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
@@ -87,7 +87,7 @@ class SearchScreen extends StatelessWidget {
                                         context, const MealDetails());
                                   });
                                 },
-                                child: FavouriteItem(
+                                child: MealItemShape(
                                   name: data?.mealName,
                                   color: Colors.black,
                                   image: data?.mealImage,

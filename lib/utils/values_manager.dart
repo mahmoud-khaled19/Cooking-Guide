@@ -13,6 +13,7 @@ class AppSize {
   static double s28 = ScreenUtil().setSp(28);
   static double s30 = ScreenUtil().setSp(30);
   static double s40 = ScreenUtil().setSp(40);
+  static double s45 = ScreenUtil().setSp(45);
   static double s50 = ScreenUtil().setSp(50);
   static double s60 = ScreenUtil().setSp(60);
   static double s70 = ScreenUtil().setSp(70);
