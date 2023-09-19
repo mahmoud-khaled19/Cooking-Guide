@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/utils/colors_manager.dart';
-import 'package:food_app/widgets/swipe_button_widget.dart';
+import 'package:food_app/widgets/elevated_button_widget.dart';
 import '../../utils/global_methods.dart';
 import '../../utils/values_manager.dart';
 import '../../view_model/app_cubit/app_cubit.dart';
@@ -32,7 +32,6 @@ class MealDetailsScreen extends StatelessWidget {
   final String? source;
   final String? videoUrl;
   final String? mealInstructions;
-  final bool isFinished = false;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +110,7 @@ class MealDetailsScreen extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    GlobalMethods.shareLink(videoUrl!);
+                                    return GlobalMethods.shareLink(videoUrl!);
                                   },
                                   child: Icon(
                                     Icons.share,
@@ -136,11 +135,14 @@ class MealDetailsScreen extends StatelessWidget {
                       children: [
                         Padding(
                           padding: EdgeInsets.all(AppSize.s10),
-                          child: SwipeButtonWidget(
-                              isFinished: isFinished,
-                              function: () {
-                                GlobalMethods.showVideo(videoUrl!);
-                              }),
+                          child: DefaultButton(
+                            width: AppSize.s170,
+                            text: 'Watch Video',
+                            function: () {
+                              GlobalMethods.showVideo(videoUrl!);
+                            },
+                            context: context,
+                          ),
                         ),
                         DefaultCustomText(
                           text: mealName ?? ' try name',

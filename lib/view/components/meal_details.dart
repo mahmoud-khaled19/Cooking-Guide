@@ -24,6 +24,7 @@ class MealDetails extends StatelessWidget {
               source: mealData.mealSource,
               videoUrl: mealData.mealVideo,
               mealInstructions: mealData.mealInstructions,
+
               items: [
                 mealData.mealContent1 ?? '',
                 mealData.mealContent2 ?? '',

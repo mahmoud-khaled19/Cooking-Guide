@@ -68,12 +68,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final screenHeight = MediaQuery.sizeOf(context).height;
     final screenWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: AppBar(),
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: screenHeight * 0.06,
+            ),
             Container(
               height: screenHeight * 0.2,
               width: screenWidth * 0.85,

@@ -4,10 +4,8 @@ class Assets {
 
   static const String imagesBear = 'assets/images/bear.riv';
   static const String imagesChefRafiki = 'assets/images/Chef-rafiki.png';
-  static const String imagesCook = 'assets/images/cook.png';
   static const String imagesFavourites = 'assets/images/favourites.png';
   static const String imagesGmail = 'assets/images/gmail.png';
-  static const String imagesLoginScreen = 'assets/images/login_screen.png';
   static const String imagesNoPage = 'assets/images/no_page.png';
   static const String imagesSearch = 'assets/images/search.png';
 

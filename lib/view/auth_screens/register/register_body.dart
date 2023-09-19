@@ -130,12 +130,15 @@ class RegisterBody extends StatelessWidget {
                   child: DefaultButton(
                     text: AppStrings.register,
                     function: () {
-                      cubit.userRegisterWithEmailAndPassword(
-                        context,
-                        name: nameController!.text.trim(),
-                        password: passwordController!.text.trim(),
-                        email: emailController!.text.trim(),
-                      );
+                      if (checkFields(context) == true) {
+                         cubit.userRegisterWithEmailAndPassword(
+                          context,
+                          name: nameController!.text.trim(),
+                          password: passwordController!.text.trim(),
+                          email: emailController!.text.trim(),
+                        );
+                      }
+                      return null;
                     },
                     context: context,
                   ),
@@ -167,5 +170,31 @@ class RegisterBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  checkFields(context) {
+    if (emailController!.text.isEmpty ||
+        passwordController!.text.isEmpty ||
+        confirmPasswordController!.text.isEmpty ||
+        nameController!.text.isEmpty) {
+      return GlobalMethods.showAlertDialog(
+          context: context,
+          title: DefaultCustomText(text: 'Error'),
+          content: Container(
+            child: DefaultCustomText(text: 'Complete The All Fields '),
+            height: AppSize.s30,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: DefaultCustomText(
+                  text: 'Ok',
+                  alignment: Alignment.centerRight,
+                ))
+          ]);
+    }
+    return true ;
   }
 }

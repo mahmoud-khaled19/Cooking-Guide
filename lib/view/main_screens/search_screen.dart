@@ -52,7 +52,8 @@ class SearchScreen extends StatelessWidget {
               ),
               if (cubit.removeData == true)
                 DefaultButton(
-                    text: 'Remove Data',
+                  width: AppSize.s170,
+                    text: 'Remove Result',
                     function: () {
                       cubit.removeShownData();
                     },
@@ -98,7 +99,7 @@ class SearchScreen extends StatelessWidget {
                           );
                         } else {
                           return const EmptyScreen(
-                            text: AppStrings.errorMessage,
+                            text: 'No Result !',
                             image: Assets.imagesNoPage,
                           );
                         }

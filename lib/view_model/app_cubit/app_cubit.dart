@@ -13,6 +13,7 @@ import 'package:food_app/view/main_screens/userInfo_screen.dart';
 import '../../utils/global_methods.dart';
 import '../../view/main_screens/cat&area_details_screen.dart';
 import '../../view/main_screens/favourites_screen.dart';
+import '../shared_preferences.dart';
 import 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -28,6 +29,7 @@ class AppCubit extends Cubit<AppState> {
   FirebaseFirestore authStore = FirebaseFirestore.instance;
   final favouritesCollection =
       FirebaseFirestore.instance.collection('favourites');
+  bool isDark = false;
 
   void changeScreen(index) {
     currentPage = index;
@@ -46,29 +48,16 @@ class AppCubit extends Cubit<AppState> {
         .map((snapshot) => snapshot.size > 0);
   }
 
-  bool isDark = false;
-
-  changeAppLightModeState() {
-    if(isDark ==false){
-      return ;
-    }
-    else{
-      isDark = !isDark;
+  void changeAppModeState({bool? appMode}) {
+    if (isDark == appMode) {
+      return;
+    } else {
+      isDark = appMode!;
+      CacheHelper.saveData(key: 'isDark', value: isDark);
       emit(ChangeAppModeState());
-      print('mode is $isDark');
     }
   }
-  changeAppDarkModeState() {
-    if(isDark ==true){
-      return ;
-    }
-    else{
-      isDark = !isDark;
-      emit(ChangeAppModeState());
-      print('mode is $isDark');
-    }
 
-  }
 
   appScreenBody() {
     if (currentPage == 0) {
@@ -158,7 +147,6 @@ class AppCubit extends Cubit<AppState> {
       'quantity': quantity,
     });
   }
-
 
   void changeFavouriteIcon() {}
 

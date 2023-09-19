@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/generated/assets.dart';
@@ -17,11 +16,11 @@ import '../../../view_model/login_cubit/login_state.dart';
 class LoginBody extends StatelessWidget {
   LoginBody({
     Key? key,
-     this.passwordController,
-     this.passFocusNode,
-     this.emailFocusNode,
-     this.emailController,
-     this.emailChangedFunction,
+    this.passwordController,
+    this.passFocusNode,
+    this.emailFocusNode,
+    this.emailController,
+    this.emailChangedFunction,
   }) : super(key: key);
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
@@ -29,13 +28,13 @@ class LoginBody extends StatelessWidget {
   final FocusNode? passFocusNode;
   final formKey = GlobalKey<FormState>();
   final Function(String? val)? emailChangedFunction;
+
   @override
   Widget build(BuildContext context) {
     final hSize = MediaQuery.sizeOf(context).height;
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         LoginCubit cubit = BlocProvider.of(context);
-        log('rebuild login screen');
         return Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -47,7 +46,8 @@ class LoginBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: hSize * 0.02),
           margin: EdgeInsets.only(
             right: hSize * 0.03,
-            left: hSize * 0.03,),
+            left: hSize * 0.03,
+          ),
           height: hSize * 0.61,
           child: Column(
             children: [
@@ -81,9 +81,8 @@ class LoginBody extends StatelessWidget {
                 textTypeAction: TextInputAction.done,
                 isSecure: cubit.isVisible,
                 controller: passwordController!,
-                suffixIcon: cubit.isVisible
-                    ? Icons.visibility_off
-                    : Icons.visibility,
+                suffixIcon:
+                    cubit.isVisible ? Icons.visibility_off : Icons.visibility,
                 suffixFunction: () {
                   cubit.changeVisibility();
                 },
@@ -129,19 +128,25 @@ class LoginBody extends StatelessWidget {
                 fontSize: AppSize.s12,
                 color: Colors.grey[800],
               ),
-
-              GestureDetector(
-                onTap: () {
-                  cubit.signInWithGoogle(context);
-                },
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 30,
-                  child: Image(
-                    fit: BoxFit.fill,
-                    height: hSize * 0.05,
-                    image: AssetImage(
-                      Assets.imagesGmail,
+              Visibility(
+                visible: state is ! SignInWithGoogleLoadingState ||
+                    state is SignInWithGoogleErrorState,
+                replacement: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    cubit.signInWithGoogle(context);
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                    child: Image(
+                      fit: BoxFit.fill,
+                      height: hSize * 0.05,
+                      image: AssetImage(
+                        Assets.imagesGmail,
+                      ),
                     ),
                   ),
                 ),
@@ -173,5 +178,29 @@ class LoginBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  checkEmailAndPassword(context) {
+    if (emailController!.text.isEmpty || passwordController!.text.isEmpty) {
+      return GlobalMethods.showAlertDialog(
+          context: context,
+          title: DefaultCustomText(text: 'Error'),
+          content: Container(
+            child:
+                DefaultCustomText(text: 'The Email or Password is Not Correct'),
+            height: AppSize.s30,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: DefaultCustomText(
+                  text: 'Ok',
+                  alignment: Alignment.centerRight,
+                ))
+          ]);
+    }
+    return true;
   }
 }

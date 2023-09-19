@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/utils/colors_manager.dart';
 import 'package:food_app/utils/values_manager.dart';
 import 'package:food_app/view_model/app_cubit/app_cubit.dart';
 import 'package:food_app/view_model/home_layout_view_model.dart';

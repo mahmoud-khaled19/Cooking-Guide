@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/view/auth_screens/login/login_screen.dart';
 import 'package:food_app/view_model/register_cubit/register_state.dart';
@@ -24,35 +23,18 @@ class RegisterCubit extends Cubit<RegisterState> {
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
-    )
-        .then((value) {
+    ).then((value) {
       addUserDataToFirebase(
         name: name,
         password: password,
         email: email,
       );
-      afterRegister(context);
+      GlobalMethods.navigateAndFinish(context, LoginScreen());
       emit(RegisterWithEmailAndPasswordSuccessState());
     }).catchError((error) {
-      GlobalMethods.showAlertDialog(
-          context: context,
-          title: Text(error.toString()),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('ok')),
-          ]);
       emit(RegisterWithEmailAndPasswordErrorState());
+      GlobalMethods.showErrorMessage(error, context);
     });
-  }
-
-  bool confirmPassword(String passwordController, confirmPasswordController) {
-    if (passwordController != confirmPasswordController) {
-      return false;
-    }
-    return true;
   }
 
   bool isVisible = true;
@@ -60,12 +42,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   void changeVisibility() {
     isVisible = !isVisible;
     emit(ChangeVisibilityState());
-  }
-
-  void afterRegister(context) {
-    GlobalMethods.showSnackBar(
-        context, 'Email Created Successfully', Colors.green);
-    GlobalMethods.navigateTo(context, LoginScreen());
   }
 
   Future addUserDataToFirebase({

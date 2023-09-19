@@ -24,6 +24,7 @@ class UserInfoScreen extends StatelessWidget {
             DefaultCustomText(
               text: 'Hello, ${loginCubit.userName}',
               fontSize: AppSize.s14,
+              alignment: Alignment.center,
             ),
             SizedBox(
               height: AppSize.s30,
@@ -32,10 +33,10 @@ class UserInfoScreen extends StatelessWidget {
                 title: AppStrings.mode,
                 trailingWidget: DefaultPopMenuWidget(
                   itemOneFunction: () {
-                    return cubit.changeAppLightModeState();
+                    return cubit.changeAppModeState(appMode: false);
                   },
                   itemTwoFunction: () {
-                    return cubit.changeAppDarkModeState();
+                    return cubit.changeAppModeState(appMode: true);
                   },
                   itemOneText: AppStrings.lightMode,
                   itemTwoText: AppStrings.darkMode,
@@ -65,7 +66,9 @@ class UserInfoScreen extends StatelessWidget {
             DefaultListTile(
                 title: AppStrings.signOut,
                 function: () {
-                  loginCubit.signOut(context);
+                  loginCubit.signOut(context).then((value) {
+                    cubit.currentPage = 0 ;
+                  });
                 },
                 trailingWidget: const Icon(Icons.arrow_forward_ios_outlined),
                 leadingWidget: const Icon(Icons.logout)),

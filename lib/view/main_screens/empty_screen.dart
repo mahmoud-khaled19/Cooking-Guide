@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/utils/values_manager.dart';
+import 'package:food_app/widgets/default_custom_text.dart';
+
 class EmptyScreen extends StatelessWidget {
   final String text;
   final String image;
@@ -24,10 +27,15 @@ class EmptyScreen extends StatelessWidget {
             height: size * 0.4,
             width: size * 0.8,
           ),
+          SizedBox(
+            height: AppSize.s30,
+          ),
           Center(
-            child: Text(
-             text,
-              style: Theme.of(context).textTheme.titleMedium,
+            child: DefaultCustomText(
+              text: text,
+              alignment: Alignment.center,
+              fontSize: AppSize.s20,
+              color: Theme.of(context).splashColor,
             ),
           )
         ],
