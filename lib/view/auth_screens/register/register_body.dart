@@ -131,7 +131,7 @@ class RegisterBody extends StatelessWidget {
                     text: AppStrings.register,
                     function: () {
                       if (checkFields(context) == true) {
-                         cubit.userRegisterWithEmailAndPassword(
+                        cubit.userRegisterWithEmailAndPassword(
                           context,
                           name: nameController!.text.trim(),
                           password: passwordController!.text.trim(),
@@ -194,7 +194,25 @@ class RegisterBody extends StatelessWidget {
                   alignment: Alignment.centerRight,
                 ))
           ]);
+    } else if (passwordController!.text != confirmPasswordController!.text) {
+      return GlobalMethods.showAlertDialog(
+          context: context,
+          title: DefaultCustomText(text: 'Error'),
+          content: Container(
+            child: DefaultCustomText(text: 'check your password again !'),
+            height: AppSize.s30,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: DefaultCustomText(
+                  text: 'Ok',
+                  alignment: Alignment.centerRight,
+                ))
+          ]);
     }
-    return true ;
+    return true;
   }
 }

@@ -8,5 +8,6 @@ class Assets {
   static const String imagesGmail = 'assets/images/gmail.png';
   static const String imagesNoPage = 'assets/images/no_page.png';
   static const String imagesSearch = 'assets/images/search.png';
+  static const String imagesSplash = 'assets/images/splash.riv';
 
 }

@@ -52,8 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
     final screenWidth = MediaQuery.sizeOf(context).width;
-    log('rebuild animation Screen');
-
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
